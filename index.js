@@ -10,6 +10,7 @@ global.include = function(file) {
 const express = require('express');
 const database = include('databaseConnection');
 const router = include('routes/router');
+const petRouter = include('routes/petRouter');
 
 const port = process.env.PORT || 3000;
 
@@ -40,7 +41,7 @@ app.use(express.urlencoded({extended: false}));
  
 app.use('/',router);
 app.use(express.static(__dirname + "/public"));
-
+app.use('/pets',petRouter);
 app.listen(port, () => {
 	console.log("Node application listening on port "+port);
 }); 
